@@ -11,7 +11,7 @@ Eventually I may upload it to the Firefox / Chrome extension stores, but for now
 
 ### Firefox
 
-Option 1: Go to [Releases](./releases), download the `.xpi` file and install it via `about:addons` (CTRL+Shift+A).
+Option 1: Go to [Releases](/releases), download the `.xpi` file and install it via `about:addons` (CTRL+Shift+A).
 
 Option 2: Follow the [Trying it out](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#Trying_it_out) steps on their developer website.
 
