@@ -45,7 +45,6 @@ async function grabCookies() {
         'auth_hash',
         'auth_id',
         'auth_uniq_',
-        'fp',
         'sess',
     ];
 
