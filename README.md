@@ -4,6 +4,8 @@ An extension made to make it easier to copy the correct `config.json` values whe
 
 It's ugly and super simple.
 
+**FYI**: As of v1.0.1 the `"fp": "xxxxxxxxxxxx"` value is no longer included, as it's no longer being used by the software.
+
 ## How to install
 
 For now you have to download the repository and load it manually.  
@@ -33,6 +35,8 @@ There's a a "Copy to clipboard" button at the bottom of the popup that should co
 If it does not work, you can just copy the text manually by selecting it.
 
 ### Preview
+
+**FYI**: As of v1.0.1 the `"fp": "xxxxxxxxxxxx"` value is no longer included, as it's no longer being used by the software.
 
 ![Preview of extension](https://i.marcus.pw/ss/2020-09-03_m5qLXS.png)
 
