@@ -110,6 +110,7 @@ async function grabCookies() {
     config.user_agent = navigator.userAgent;
     config.support_2fa = true;
     config.username = 'u' + authId;
+    config.active = true;
 
     /**
      * Then we print it to the popup :)
