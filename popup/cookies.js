@@ -110,6 +110,8 @@ async function grabCookies() {
     config.user_agent = navigator.userAgent;
     config.support_2fa = true;
     config.username = 'u' + authId;
+    // For the "profiles" feature added in v6.1
+    config.active = true;
 
     /**
      * Then we print it to the popup :)
