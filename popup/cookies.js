@@ -138,7 +138,7 @@ async function grabCookies() {
     };
 
     const cookieJson = JSON.stringify(authConfig, null, 2);
-    jsonElement.innerHTML = cookieJson;
+    jsonElement.textContent = cookieJson;
 
     /**
      * Use yee yee ghetto ass method as a fallback
@@ -150,7 +150,7 @@ async function grabCookies() {
         try {
             await clipboardWriteText(cookieJson);
 
-            copyBtn.innerHTML = 'Copied to clipboard!';
+            copyBtn.textContent = 'Copied to clipboard!';
             copyBtn.setAttribute('disabled', '1');
         }
         catch (err) {
@@ -158,7 +158,7 @@ async function grabCookies() {
         }
 
         setTimeout(() => {
-            copyBtn.innerHTML = oldBtnText;
+            copyBtn.textContent = oldBtnText;
             copyBtn.removeAttribute('disabled');
         }, 2500);
     });
