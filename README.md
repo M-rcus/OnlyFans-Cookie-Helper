@@ -13,9 +13,13 @@ Eventually I may upload it to the Firefox / Chrome extension stores, but for now
 
 ### Firefox
 
-Option 1: Go to [Releases](https://github.com/M-rcus/OnlyFans-Cookie-Helper/releases), download the `.xpi` file and install it via `about:addons` (CTRL+Shift+A).
+#### Option 1:
+Go to [Releases](https://github.com/M-rcus/OnlyFans-Cookie-Helper/releases), download the `.xpi` file and install it by typing `about:addons` into your URL bar, pressing `CTRL+Shift+A` or clicking the "hamburger menu" top-right of the Firefox window and then "Addons".
 
-Option 2: Follow the [Trying it out](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#Trying_it_out) steps on their developer website.
+![Screenshot on how to do Firefox install option 1](https://i.marcus.pw/ss/2021-04-10_vOzkx1.png)
+
+#### Option 2:
+Follow the [Trying it out](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#Trying_it_out) steps on their developer website.
 
 ### Chrome / Brave
 
@@ -36,7 +40,8 @@ If it does not work, you can just copy the text manually by selecting it.
 
 ### Preview
 
-**FYI**: As of v1.0.1 the `"fp": "xxxxxxxxxxxx"` value is no longer included, as it's no longer being used by the software.
+**FYI**: This is an old screenshot, but the popup looks practically identical.
+As of v1.0.1 the `"fp": "xxxxxxxxxxxx"` value is no longer included, as it's no longer being used by the software.
 
 ![Preview of extension](https://i.marcus.pw/ss/2020-09-03_m5qLXS.png)
 

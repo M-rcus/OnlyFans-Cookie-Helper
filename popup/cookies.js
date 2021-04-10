@@ -112,13 +112,32 @@ async function grabCookies() {
     config.username = 'u' + authId;
     // For the "profiles" feature added in v6.1
     config.active = true;
+    /**
+     * These were added in v6.4.x or something
+     * 
+     * They're not necessary to include,
+     * as the software will fill in empty values here anyways,
+     * but it doesn't hurt I suppose.
+     */
+    config.email = "";
+    config.password = "";
 
     /**
      * Then we print it to the popup :)
      * 
      * Third parameter to JSON.stringify() is for spacing the indentation.
+     *
+     * We wrap the config we set inside a new object, under the `auth` key,
+     * due to more recent changes of the downloader software.
+     * 
+     * Technically wasn't necessary, but the result was that it was a bit more
+     * pain in the ass if you used more than one account with the software.
      */
-    const cookieJson = JSON.stringify(config, null, 2);
+    const authConfig = {
+        auth: config,
+    };
+
+    const cookieJson = JSON.stringify(authConfig, null, 2);
     jsonElement.innerHTML = cookieJson;
 
     /**
