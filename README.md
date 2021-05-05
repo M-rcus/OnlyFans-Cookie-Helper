@@ -48,3 +48,14 @@ As of v1.0.1 the `"fp": "xxxxxxxxxxxx"` value is no longer included, as it's no 
 ## LICENSE
 
 [MIT License](./LICENSE.md)
+
+## Mirrors
+
+This project is currently mirrored to three different providers:
+
+- [GitHub](https://github.com/M-rcus/OnlyFans-Cookie-Helper)
+- [GitLab](https://gitlab.com/Maarcus/OnlyFans-Cookie-Helper)
+- [GitGud.io](https://gitgud.io/Maarcus/OnlyFans-Cookie-Helper)
+
+Those are the only 'official' sources for this extension.  
+Anyone else can of course freely mirror the project as they see fit.
