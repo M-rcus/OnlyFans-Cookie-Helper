@@ -38,12 +38,22 @@ A popup should show up (see [preview](#preview)) with a JSON-formatted text.
 There's a a "Copy to clipboard" button at the bottom of the popup that should copy the text to your clipboard.  
 If it does not work, you can just copy the text manually by selecting it.
 
+Once you've copied the text to clipboard, you can paste it into the `auth.json` file in your profiles folder.  
+The default `auth.json` file should be located in `<OnlyFans-Software-Folder>/.profiles/OnlyFans/default/auth.json`, but may not show up until you've started up the OnlyFans software at least once.
+
+You can also create a new folder and a separate `auth.json` file, which is useful if you have multiple accounts.  
+For example:
+- `<OnlyFans-Software-Folder>/.profiles/OnlyFans/my-personal-account/auth.json`
+- `<OnlyFans-Software-Folder>/.profiles/OnlyFans/my-secret-account/auth.json`
+
 ### Preview
 
-**FYI**: This is an old screenshot, but the popup looks practically identical.
-As of v1.0.1 the `"fp": "xxxxxxxxxxxx"` value is no longer included, as it's no longer being used by the software.
+Screenshot as of extension version v1.0.3.  
+A few things to note:
+- `auth_hash`, `auth_uniq_`, `email` and `password` are _typically empty_. Don't panic if they don't have any values, as it's completely normal.
+- The `username` field is by default set to "u" plus the same number as `auth_id`. It _does not_ need to be your actual OnlyFans username.
 
-![Preview of extension](https://i.marcus.pw/ss/2020-09-03_m5qLXS.png)
+![Preview of extension](https://i.marcus.pw/ss/2021-05-20_5hI4rK.png)
 
 ## LICENSE
 
@@ -59,3 +69,10 @@ This project is currently mirrored to three different providers:
 
 Those are the only 'official' sources for this extension.  
 Anyone else can of course freely mirror the project as they see fit.
+
+## Sellout (Tips)
+If you find the extension useful and would like to send me a tip, then I'll gladly take some crypto <3
+
+- Bitcoin: `bc1qps35rpadgmpf2a7vmuq45xnt7qscymtlnny6mx`
+- Dogecoin: `DAjtoHdXFFhRc3qJq8sqCWpQLLDB8t3L6n`
+- Litecoin: `LbX5iqVfYoRz7kPAPQoEKdqiN7Y9PRxsAg`
