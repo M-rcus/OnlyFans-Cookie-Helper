@@ -23,7 +23,6 @@ async function copyStringToClipboard (str) {
 
 const containerNames = {};
 const containersEnabled = browser.contextualIdentities !== undefined;
-let selectedContainer = null;
 
 async function getContainers()
 {
@@ -62,10 +61,6 @@ async function getContainers()
         const option = document.createElement('option');
         option.setAttribute('value', storeId);
         option.textContent = name;
-
-        if (selectedContainer === storeId) {
-            option.setAttribute('selected', '1');
-        }
 
         optionList.insertAdjacentElement('beforeend', option);
     }
