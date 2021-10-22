@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "OnlyFans Cookie Helper",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Helper extension that makes it easier to copy config.json values for the DIGITALCRIMINAL/OnlyFans software",
     "icons": {
         "48": "icons/cookie.png"
