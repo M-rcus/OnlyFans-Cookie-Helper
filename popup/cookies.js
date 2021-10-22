@@ -142,7 +142,7 @@ async function grabCookies(cookieStoreId) {
      */
     const config = {
         username: 'u' + authId,
-        cookie: `auth_id=${authId}; sess=${sess}; auth_hash=; auth_uniq_${authId}; auth_uid_${authId};`,
+        cookie: `auth_id=${authId}; sess=${sess}; auth_hash=; auth_uniq_${authId}=; auth_uid_${authId}=;`,
         // TODO: Still need to handle this better...
         user_agent: navigator.userAgent,
         support_2fa: true,
