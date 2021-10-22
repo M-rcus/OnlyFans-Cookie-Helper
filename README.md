@@ -4,8 +4,6 @@ An extension made to make it easier to copy the correct `config.json` values whe
 
 It's ugly and super simple.
 
-**FYI**: As of v1.0.1 the `"fp": "xxxxxxxxxxxx"` value is no longer included, as it's no longer being used by the software.
-
 ## How to install
 
 For now you have to download the repository and load it manually.  
@@ -25,7 +23,10 @@ Follow the [Trying it out](https://developer.mozilla.org/en-US/docs/Mozilla/Add-
 
 Follow the steps on [Chrome's "Getting Started" tutorial](https://developer.chrome.com/extensions/getstarted#manifest) for extensions.
 
-**NOTE:** You do NOT need to create the `manifest.json` file yourself, that is already included in the repository.
+**NOTES:**
+- You do NOT need to create the `manifest.json` file yourself, that is already included in the repository.
+- The extension may say it contains errors and then highlight a permission called "contextualIdentities": ![](https://i.marcus.pw/ss/2021-10-22_qxfIFE.png)
+    - It's safe to ignore, as it's a permission meant for Firefox users, but does not affect Chrome / Brave.
 
 These steps MAY work on Microsoft Edge (the new version), but no guarantees.
 

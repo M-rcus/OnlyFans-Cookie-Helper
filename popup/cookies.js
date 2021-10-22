@@ -21,13 +21,83 @@ async function copyStringToClipboard (str) {
     document.body.removeChild(el);
 }
 
-async function grabCookies() {
+const containerNames = {};
+const containersEnabled = browser.contextualIdentities !== undefined;
+let selectedContainer = null;
+
+async function getContainers()
+{
+    /**
+     * Prefill popup with "no container" cookies
+     */
+    grabCookies();
+
+    /**
+     * Non-Firefox browser or containers not enabled.
+     */
+    if (browser.contextualIdentities === undefined) {
+        return;
+    }
+
+    /**
+     * Containers are enabled, but none found.
+     */
+    const containers = await browser.contextualIdentities.query({});
+    if (containers.length < 1) {
+        return;
+    }
+
+    const containerSection = document.querySelector('#container-list');
+    containerSection.classList.remove('hidden');
+
+    const optionList = containerSection.querySelector('select');
+
+    for (const container of containers)
+    {
+        const storeId = container.cookieStoreId;
+        const { name } = container;
+
+        containerNames[storeId] = name;
+
+        const option = document.createElement('option');
+        option.setAttribute('value', storeId);
+        option.textContent = name;
+
+        if (selectedContainer === storeId) {
+            option.setAttribute('selected', '1');
+        }
+
+        optionList.insertAdjacentElement('beforeend', option);
+    }
+
+    optionList.addEventListener('change', function(event) {
+        const storeId = event.target.value;
+
+        if (!storeId || storeId.length < 1) {
+            grabCookies(null);
+            return;
+        }
+
+        grabCookies(storeId);
+    });
+}
+
+async function grabCookies(cookieStoreId) {
     /**
      * Grab the cookies from the browser...
      */
-    const cookies = await browser.cookies.getAll({
+    const cookieOpts = {
         domain: '.onlyfans.com',
-    });
+    };
+
+    /**
+     * Container tabs
+     */
+    if (cookieStoreId) {
+        cookieOpts.storeId = cookieStoreId;
+    }
+
+    const cookies = await browser.cookies.getAll(cookieOpts);
 
     /**
      * We only care about `name` and `value` in each cookie entry.
@@ -39,22 +109,13 @@ async function grabCookies() {
     }
 
     /**
-     * Then we go through the relevant cookies for the OnlyFans Downloader
-     */
-    const relevantCookies = [
-        'auth_hash',
-        'auth_id',
-        'auth_uniq_',
-        'sess',
-    ];
-
-    /**
      * Define and check if `authId` exists
      * if not, return and call it a day...
      *
      * Also define the other elements.
      */
     const authId = mappedCookies.auth_id;
+    const sess = mappedCookies.sess;
     const copyBtn = document.querySelector('#copy-to-clipboard');
     const jsonElement = document.querySelector('#json');
 
@@ -62,76 +123,44 @@ async function grabCookies() {
      * If authId isn't specified, user is not logged into
      * OnlyFans... or at least we assume so.
      */
-    if (!authId) {
-        jsonElement.setAttribute('style', 'color: red;');
-        jsonElement.innerHTML = 'Could not find valid cookie values, make sure you are logged into OnlyFans.';
-        copyBtn.remove();
+    if (!authId || !sess) {
+        let errorMessage = 'Could not find valid cookie values, make sure you are logged into OnlyFans.';
+        if (containersEnabled) {
+            const containerName = containerNames[cookieStoreId] || 'Default (no container)';
+            errorMessage = `Could not find valid cookie values in container: <strong>${containerName}</strong><br>Make sure you are logged into OnlyFans.`;
+        }
+
+        jsonElement.innerHTML = errorMessage;
+        if (!copyBtn.classList.contains('hidden')) {
+            copyBtn.classList.add('hidden');
+            jsonElement.classList.add('red');
+        }
 
         return;
     }
 
-    /**
-     * Actually extract the cookies we want/need.
-     */
-    const wantedCookies = {};
-    for (const cookieName of relevantCookies)
-    {
-        let realCookieName = cookieName;
-
-        /**
-         * The 2FA cookie name is dynamic based on `auth_id`
-         * so we need to handle it a bit differently.
-         *
-         * However, OnlyFans Downloader uses the normal `auth_uniq_` key in the
-         * config file, so we still need to use it when setting _our_ key.
-         */
-        if (cookieName === 'auth_uniq_') {
-            realCookieName = 'auth_uniq_' + authId;
-        }
-
-        const wantedCookie = mappedCookies[realCookieName];
-
-        /**
-         * Set cookie to empty string if it does not exist.
-         */
-        if (!wantedCookie) {
-            wantedCookies[cookieName] = '';
-            continue;
-        }
-
-        wantedCookies[cookieName] = wantedCookie;
-    }
+    copyBtn.classList.remove('hidden');
+    jsonElement.classList.remove('red');
 
     /**
-     * Finally we set some extra values that are technically non-cookies.
+     * Fill out the object that OnlyFans excepts
      */
-    const config = {...wantedCookies};
-    config.app_token = '33d57ade8c02dbc5a333db99ff9ae26a';
-    config.user_agent = navigator.userAgent;
-    config.support_2fa = true;
-    config.username = 'u' + authId;
-    // For the "profiles" feature added in v6.1
-    config.active = true;
-    /**
-     * These were added in v6.4.x or something
-     * 
-     * They're not necessary to include,
-     * as the software will fill in empty values here anyways,
-     * but it doesn't hurt I suppose.
-     */
-    config.email = "";
-    config.password = "";
+    const config = {
+        username: 'u' + authId,
+        cookie: `auth_id=${authId}; sess=${sess}; auth_hash=; auth_uniq_${authId}; auth_uid_${authId};`,
+        // TODO: Still need to handle this better...
+        user_agent: navigator.userAgent,
+        support_2fa: true,
+        active: true,
+        email: "",
+        password: "",
+        hashed: false,
+    };
 
     /**
      * Then we print it to the popup :)
-     * 
-     * Third parameter to JSON.stringify() is for spacing the indentation.
      *
-     * We wrap the config we set inside a new object, under the `auth` key,
-     * due to more recent changes of the downloader software.
-     * 
-     * Technically wasn't necessary, but the result was that it was a bit more
-     * pain in the ass if you used more than one account with the software.
+     * Third parameter to JSON.stringify() is for spacing the indentation.
      */
     const authConfig = {
         auth: config,
@@ -165,5 +194,5 @@ async function grabCookies() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    await grabCookies();
+    await getContainers();
 });

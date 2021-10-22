@@ -2,12 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+
+        .red {
+            color: red;
+        }
+
+        body {
+            margin: 1em;
+        }
+
+        #container-list {
+            margin-top: 0.5em;
+        }
+    </style>
 </head>
 <body>
     <div>
         <code><pre id="json"></pre></code>
         <br><br>
         <button id="copy-to-clipboard">Copy to clipboard</button>
+    </div>
+
+    <div id="container-list" class="hidden">
+        Select container tab:
+        <select>
+            <option value="">Default (no container)</option>
+        </select>
     </div>
 </body>
 <script type="text/javascript" src="../lib/browser-polyfill.min.js"></script>
