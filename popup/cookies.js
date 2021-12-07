@@ -160,7 +160,7 @@ async function grabCookies(cookieStoreId) {
     const st = mappedCookies.st;
     const bcToken = await getBcTokenSha(st);
     if (!bcToken) {
-        let errorMessage = 'Could not find valid x_bc value. Please open OnlyFans.com once and make sure it fully loads.';
+        let errorMessage = 'Could not find valid x_bc value. Please open OnlyFans.com once and make sure it fully loads. If you are not logged in, please log in and <i>refresh the page</i>.';
         if (containersEnabled) {
             const containerName = containerNames[cookieStoreId] || 'Default (no container)';
             errorMessage = `Could not find valid x_bc value. Please open OnlyFans.com once in container: <strong>${containerName}</strong><br>Make sure it fully loads. If you are not logged in, please log in and <i>refresh the page</i>.`;
