@@ -28,7 +28,7 @@ Follow the steps on [Chrome's "Getting Started" tutorial](https://developer.chro
 - The extension may say it contains errors and then highlight a permission called "contextualIdentities": ![](https://i.marcus.pw/ss/2021-10-22_qxfIFE.png)
     - It's safe to ignore, as it's a permission meant for Firefox users, but does not affect Chrome / Brave.
 
-These steps MAY work on Microsoft Edge (the new version), but no guarantees.
+These steps MAY work on Microsoft Edge, but no guarantees.
 
 ## How to use
 
@@ -49,12 +49,28 @@ For example:
 
 ### Preview
 
-Screenshot as of extension version v1.0.3.  
+Screenshot as of extension version v1.0.3, which means it's slightly outdated.  
 A few things to note:
 - `auth_hash`, `auth_uniq_`, `email` and `password` are _typically empty_. Don't panic if they don't have any values, as it's completely normal.
 - The `username` field is by default set to "u" plus the same number as `auth_id`. It _does not_ need to be your actual OnlyFans username.
 
 ![Preview of extension](https://i.marcus.pw/ss/2021-05-20_5hI4rK.png)
+
+## Permissions
+
+Overview of permissions and why they're required.
+
+- `cookies`
+    - Values such as `auth_id` and `sess` are contained within cookies.
+    - Keep in mind that the `cookies` permission only applies for `onlyfans.com` and no other websites.
+- `clipboardWrite`
+    - To copy the `auth.json` values into your clipboard
+- `storage`
+    - This is specifically just to "synchronize" the `x_bc` value to the popup (so it can be copied).
+    - `x_bc` isn't available via the regular `cookies` permission, so we need a workaround (which utilizes the `storage` permission).
+- `contextualIdentities`
+    - On Firefox, it's used to support multi-account containers.
+    - On Chromium-based browsers (Google Chrome, Brave, Microsoft Edge etc.) it does nothing. However, it will give a warning (that you can ignore).
 
 ## LICENSE
 

@@ -1,15 +1,19 @@
 {
     "manifest_version": 2,
     "name": "OnlyFans Cookie Helper",
-    "version": "2.0.1",
-    "description": "Helper extension that makes it easier to copy config.json values for the DIGITALCRIMINAL/OnlyFans software",
+    "version": "2.1.0",
+    "description": "Helper extension that makes it easier to copy config.json values for the DIGITALCRIMINALS/OnlyFans scraper",
     "icons": {
         "48": "icons/cookie.png"
+    },
+    "background": {
+        "scripts": ["background/background.js"]
     },
     "permissions": [
         "*://*.onlyfans.com/",
         "cookies",
         "clipboardWrite",
+        "storage",
         "contextualIdentities"
     ],
     "web_accessible_resources": [],
@@ -20,5 +24,11 @@
         },
         "default_title": "OnlyFans Cookie Helper",
         "default_popup": "popup/cookies.html"
-    }
+    },
+    "content_scripts": [
+        {
+            "matches": ["*://*.onlyfans.com/*", "*://*.onlyfans.com/"],
+            "js": ["content_scripts/bcToken.js"]
+        }
+    ]
 }

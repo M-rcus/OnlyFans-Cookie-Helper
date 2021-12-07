@@ -24,6 +24,25 @@ async function copyStringToClipboard (str) {
 const containerNames = {};
 const containersEnabled = browser.contextualIdentities !== undefined;
 
+/**
+ * Get the correct bcToken from storage
+ */
+async function getBcTokenSha(id)
+{
+    return new Promise((resolve, reject) => {
+        chrome.storage.local.get(['bcTokens'], function(data) {
+            const bcTokens = data.bcTokens || {};
+
+            if (bcTokens[id]) {
+                resolve(bcTokens[id]);
+                return;
+            }
+
+            resolve(null);
+        });
+    });
+}
+
 async function getContainers()
 {
     /**
@@ -113,6 +132,7 @@ async function grabCookies(cookieStoreId) {
     const sess = mappedCookies.sess;
     const copyBtn = document.querySelector('#copy-to-clipboard');
     const jsonElement = document.querySelector('#json');
+    const errorElement = document.querySelector('#errorMessage');
 
     /**
      * If authId isn't specified, user is not logged into
@@ -125,17 +145,41 @@ async function grabCookies(cookieStoreId) {
             errorMessage = `Could not find valid cookie values in container: <strong>${containerName}</strong><br>Make sure you are logged into OnlyFans.`;
         }
 
-        jsonElement.innerHTML = errorMessage;
+        errorElement.innerHTML = errorMessage;
+        errorElement.classList.remove('hidden');
+
         if (!copyBtn.classList.contains('hidden')) {
             copyBtn.classList.add('hidden');
-            jsonElement.classList.add('red');
+            jsonElement.classList.add('hidden');
+        }
+
+        return;
+    }
+
+    // See `background/background.js` as to why we use `st` here
+    const st = mappedCookies.st;
+    const bcToken = await getBcTokenSha(st);
+    if (!bcToken) {
+        let errorMessage = 'Could not find valid x_bc value. Please open OnlyFans.com once and make sure it fully loads.';
+        if (containersEnabled) {
+            const containerName = containerNames[cookieStoreId] || 'Default (no container)';
+            errorMessage = `Could not find valid x_bc value. Please open OnlyFans.com once in container: <strong>${containerName}</strong><br>Make sure it fully loads. If you are not logged in, please log in and <i>refresh the page</i>.`;
+        }
+
+        errorElement.innerHTML = errorMessage;
+        errorElement.classList.remove('hidden');
+
+        if (!copyBtn.classList.contains('hidden')) {
+            copyBtn.classList.add('hidden');
+            jsonElement.classList.add('hidden');
         }
 
         return;
     }
 
     copyBtn.classList.remove('hidden');
-    jsonElement.classList.remove('red');
+    jsonElement.classList.remove('hidden');
+    errorElement.classList.add('hidden');
 
     /**
      * Fill out the object that OnlyFans excepts
@@ -145,6 +189,7 @@ async function grabCookies(cookieStoreId) {
         cookie: `auth_id=${authId}; sess=${sess}; auth_hash=; auth_uniq_${authId}=; auth_uid_${authId}=;`,
         // TODO: Still need to handle this better...
         user_agent: navigator.userAgent,
+        x_bc: bcToken,
         support_2fa: true,
         active: true,
         email: "",
