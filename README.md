@@ -31,7 +31,7 @@ No guarantees though, I only do simple tests on a basic Chromium install, as my 
 This option is only available as of v2.2.0. This is **VERY unofficial way** of installing the extension and you might a few warnings about it being unsafe (which is _generally_ true).  
 <ins>If you are not comfortable with that, you can either choose to use Firefox instead or try option 2 below.</ins>
 
-1. Download the `.crx` file. Your browser might prompt you to install the extension. You can then just click 'Add extension'.
+1. Go to [Releases](https://github.com/M-rcus/OnlyFans-Cookie-Helper/releases) and click the `.crx` file. Your browser might prompt you to install the extension. You can then just click 'Add extension'.
 
 If it _does not_ prompt you to install the extension, you can try the following:
 
