@@ -32,6 +32,7 @@ This option is only available as of v2.2.0. This is **VERY unofficial way** of i
 <ins>If you are not comfortable with that, you can either choose to use Firefox instead or try option 2 below.</ins>
 
 1. Go to [Releases](https://github.com/M-rcus/OnlyFans-Cookie-Helper/releases) and click the `.crx` file. Your browser might prompt you to install the extension. You can then just click 'Add extension'.
+    - From my testing, Google Chrome and Brave give you an error when doing this. It does seem to work on "Ungoogled Chromium". Besides that I am not sure whether it will work or not.
 
 If it _does not_ prompt you to install the extension, you can try the following:
 
