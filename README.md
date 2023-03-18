@@ -6,29 +6,48 @@ It's ugly and super simple.
 
 ## How to install
 
-For now you have to download the repository and load it manually.  
-Eventually I may upload it to the Firefox / Chrome extension stores, but for now this is what you can do to use the extension...
+Extension isn't available on extension stores for now, so you can't install this extension like most normal ones.  
+One of these days I might explore putting them on the extension stores, but no guarantees.
 
 ### Firefox
 
-#### Option 1:
+#### Option 1
+
 Go to [Releases](https://github.com/M-rcus/OnlyFans-Cookie-Helper/releases), download the `.xpi` file and install it by typing `about:addons` into your URL bar, pressing `CTRL+Shift+A` or clicking the "hamburger menu" top-right of the Firefox window and then "Addons".
 
 ![Screenshot on how to do Firefox install option 1](https://i.marcus.pw/ss/2021-04-10_vOzkx1.png)
 
-#### Option 2:
+#### Option 2
+
 Follow the [Trying it out](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#Trying_it_out) steps on their developer website.
 
-### Chrome / Brave
+### Chrome / Chromium
 
-Follow the steps on [Chrome's "Getting Started" tutorial](https://developer.chrome.com/extensions/getstarted#manifest) for extensions.
+These steps MAY work on other Chromium-based browsers, such as: Brave, Microsoft Edge, Vivaldi and Opera (to name a few).  
+No guarantees though, I only do simple tests on a basic Chromium install, as my primary browser is Firefox.
 
-**NOTES:**
-- You do NOT need to create the `manifest.json` file yourself, that is already included in the repository.
-- The extension may say it contains errors and then highlight a permission called "contextualIdentities": ![](https://i.marcus.pw/ss/2021-10-22_qxfIFE.png)
-    - It's safe to ignore, as it's a permission meant for Firefox users, but does not affect Chrome / Brave.
+#### Option 1
 
-These steps MAY work on Microsoft Edge, but no guarantees.
+This option is only available as of v2.2.0. This is **VERY unofficial way** of installing the extension and you might a few warnings about it being unsafe (which is _generally_ true).  
+<ins>If you are not comfortable with that, you can either choose to use Firefox instead or try option 2 below.</ins>
+
+1. Download the `.crx` file. Your browser might prompt you to install the extension. You can then just click 'Add extension'.
+
+If it _does not_ prompt you to install the extension, you can try the following:
+
+1. Right-click on the `.crx` download link and click "Save link as..."
+    - As I mentioned, it will likely ask you (sometimes multiple times) if you want to keep the file as it can be malicious. You want to keep the file.
+2. In your Chromium-browser, go to your URL bar and hit enter after typing in `chrome://extensions`
+3. Find the `.crx` file that you just downloaded.
+4. Click and drag the `.crx` file into your Chromium browser window, where `chrome://extensions` is open.
+5. It should prompt you to add the extension.
+
+#### Option 2
+
+1. Download the ZIP file of the version - `Source code (.zip)`
+2. Extract the ZIP into a folder.
+3. In your Chromium-browser, go to your URL bar and hit enter after typing in `chrome://extensions`
+4. Click on "Load unpacked". **Select** the extracted folder and click "Open".
 
 ## How to use
 
@@ -70,7 +89,7 @@ Overview of permissions and why they're required.
     - `x_bc` isn't available via the regular `cookies` permission, so we need a workaround (which utilizes the `storage` permission).
 - `contextualIdentities`
     - On Firefox, it's used to support multi-account containers.
-    - On Chromium-based browsers (Google Chrome, Brave, Microsoft Edge etc.) it does nothing. However, it will give a warning (that you can ignore).
+    - ~~On Chromium-based browsers (Google Chrome, Brave, Microsoft Edge, Vivaldi, Opera etc.) it does nothing. However, it may give a warning. The extension should still work even with this warning.~~ - This should no longer happen as of v2.2.0.
 
 ## LICENSE
 
@@ -88,6 +107,7 @@ Those are the only 'official' sources for this extension.
 Anyone else can of course freely mirror the project as they see fit.
 
 ## Sellout (Tips)
+
 If you find the extension useful and would like to send me a tip, then I'll gladly take some crypto <3
 
 - Bitcoin: `bc1qps35rpadgmpf2a7vmuq45xnt7qscymtlnny6mx`
