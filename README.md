@@ -6,18 +6,22 @@ It's ugly and super simple.
 
 ## How to install
 
-Extension isn't available on extension stores for now, so you can't install this extension like most normal ones.  
-One of these days I might explore putting them on the extension stores, but no guarantees.
+Extension is only available on the Firefox addon store, but not on the Chrome web store. For Chromium-based browsers, alternatively installation methods are necessary.  
+One of these days I might explore putting it on the Chrome web store, but for a few different reasons I bit am hesitant to so (one of them being the paywall Google has to publish extensions).  
 
 ### Firefox
 
-#### Option 1
+#### Option 1 (Recommended)
+
+Install it from the [Firefox Addon Store (AMO)](https://addons.mozilla.org/en-US/firefox/addon/onlyfans/)
+
+#### Option 2
 
 Go to [Releases](https://github.com/M-rcus/OnlyFans-Cookie-Helper/releases), download the `.xpi` file and install it by typing `about:addons` into your URL bar, pressing `CTRL+Shift+A` or clicking the "hamburger menu" top-right of the Firefox window and then "Addons".
 
 ![Screenshot on how to do Firefox install option 1](https://i.marcus.pw/ss/2021-04-10_vOzkx1.png)
 
-#### Option 2
+#### Option 3
 
 Follow the [Trying it out](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Your_first_WebExtension#Trying_it_out) steps on their developer website.
 
@@ -114,3 +118,5 @@ If you find the extension useful and would like to send me a tip, then I'll glad
 - Bitcoin: `bc1qps35rpadgmpf2a7vmuq45xnt7qscymtlnny6mx`
 - Dogecoin: `DAjtoHdXFFhRc3qJq8sqCWpQLLDB8t3L6n`
 - Litecoin: `LbX5iqVfYoRz7kPAPQoEKdqiN7Y9PRxsAg`
+
+Alternatively, PayPal, though crypto is preferred: https://paypal.me/maaaarcus
