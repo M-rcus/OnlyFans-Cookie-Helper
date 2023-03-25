@@ -53,17 +53,33 @@ async function getContainers()
     /**
      * Non-Firefox browser or containers not enabled.
      */
-    if (browser.contextualIdentities === undefined) {
+    if (!containersEnabled) {
         return;
     }
 
     /**
      * Containers are enabled, but none found.
      */
-    const containers = await browser.contextualIdentities.query({});
+    let containers = await browser.contextualIdentities.query({});
     if (containers.length < 1) {
         return;
     }
+
+    // Sort container list by name.
+    containers.sort(function(a, b) {
+        const nameA = a.name.toLowerCase();
+        const nameB = b.name.toLowerCase();
+
+        if (nameA < nameB) {
+            return -1;
+        }
+
+        if (nameA > nameB) {
+            return 1;
+        }
+
+        return 0;
+    });
 
     const containerSection = document.querySelector('#container-list');
     containerSection.classList.remove('hidden');
