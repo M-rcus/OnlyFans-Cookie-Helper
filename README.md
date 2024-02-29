@@ -2,8 +2,6 @@
 
 An extension made to make it easier to copy the correct `config.json` values when using [datawhores/OF-Scraper](https://github.com/datawhores/OF-Scraper) or [DIGITALCRIMINALS/OnlyFans](https://github.com/DIGITALCRIMINALS/OnlyFans).
 
-It's ugly and super simple.
-
 ## How to install
 
 Extension is only available on the Firefox addon store, but not on the Chrome web store. For Chromium-based browsers, alternatively installation methods are necessary.  
@@ -14,6 +12,12 @@ One of these days I might explore putting it on the Chrome web store, but for a 
 #### Option 1 (Recommended)
 
 Install it from the [Firefox Addon Store (AMO)](https://addons.mozilla.org/en-US/firefox/addon/onlyfans/)
+
+**NOTE**: Mozilla disabled the addon on February 27th 2024 citing the reason:  
+> Acceptable Use, specifically Sexual content: This content contains sexual or pornographic content that violates Mozilla’s Acceptable Use Policy.
+
+I have replied to them to appeal, since the addon doesn't contain (or link to) any sexual content, but still awaiting any further reply from Mozilla.  
+If you need to \[re-\]install the addon, please use option 2 or 3 for the time being.
 
 #### Option 2
 
